@@ -1,24 +1,11 @@
-# README
+# POSEIDON
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### To run the app:
 
-Things you may want to cover:
+`git clone ssh://git@code.amaysim.net:7999/aweb/poseidon.git`
+`bundle install`
+`rails s`
 
-* Ruby version
+### To run tests:
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+`bundle exec rake`
