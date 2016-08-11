@@ -2,6 +2,8 @@ source 'https://rubygems.org'
 ruby '2.2.3'
 
 gem 'rails', '~> 5.0.0'
+gem 'bootstrap'
+gem 'chronic'
 gem 'sqlite3'
 gem 'puma', '~> 3.0'
 gem 'sass-rails', '~> 5.0'
