@@ -1,14 +1,32 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Poseidon</title>
-    <%= csrf_meta_tags %>
+<head>
+  <title>Poseidon</title>
+  <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
 
-  <body>
-    <%= yield %>
-  </body>
+<body>
+<div class="bg">
+<div class="container-fluid">
+  <div class="row">
+    <%= render :partial => 'layouts/header'%>
+  </div>
+</div>
+<div class="container-fluid">
+  <div class="row" id="content">
+    <div id="content">
+      <%= yield %>
+    </div>
+  </div>
+</div>
+<div class="container-fluid">
+  <div class="row">
+    <div><%= render :partial => 'layouts/footer'%></div>
+  </div>
+</div>
+</div>
+</body>
 </html>

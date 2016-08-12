@@ -15,3 +15,30 @@
  */
 
 @import "bootstrap";
+
+.bg {
+  background-image: url('bg-body-tile.png');
+}
+
+.logo {
+  position: relative;
+  display: flex;
+  height:100px;
+  width: 100%;
+  overflow: hidden;
+}
+
+img#title-image {
+  display: block;
+  max-width:230px;
+  max-height:95px;
+  width: auto;
+  height: auto;
+}
+
+.copyright {
+  padding: 20px 0 0;
+  color: #3c3d3e;
+  font-size: 13px;
+  float: right;
+}
