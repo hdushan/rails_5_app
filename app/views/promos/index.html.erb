@@ -1,0 +1,24 @@
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    <table class="table table-bordered table-inverse">
+      <thead class="thead-inverse">
+      <tr>
+        <th>Promo Code</th>
+        <th>Product</th>
+        <th>Environment</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @promos.each do |promo| %>
+          <tr>
+            <td scope="row"><%= promo.code %></td>
+            <td><%= promo.product %></td>
+            <td><%= promo.environment.name %></td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-md-2"></div>
+</div>
