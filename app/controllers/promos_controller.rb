@@ -12,7 +12,7 @@ class PromosController < ApplicationController
 
   def filter_by_environment(params)
     if environment(params[:environment]).nil?
-      Promo.paginate(:page => params[:page])
+      Promo.paginate(page: params[:page])
     else
       Promo.where(environment: environment(params[:environment]))
     end

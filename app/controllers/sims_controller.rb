@@ -12,7 +12,7 @@ class SimsController < ApplicationController
 
   def filter_by_environment(params)
     if environment(params[:environment]).nil?
-      Sim.paginate(:page => params[:page])
+      Sim.paginate(page: params[:page])
     else
       Sim.where(environment: environment(params[:environment]))
     end

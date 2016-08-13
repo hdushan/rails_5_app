@@ -12,7 +12,7 @@ class VouchersController < ApplicationController
 
   def filter_by_environment(params)
     if environment(params[:environment]).nil?
-      Voucher.paginate(:page => params[:page])
+      Voucher.paginate(page: params[:page])
     else
       Voucher.where(environment: environment(params[:environment]))
     end
