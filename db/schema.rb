@@ -10,35 +10,48 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_160_813_062_312) do
-  create_table 'environments', force: :cascade do |t|
-    t.string   'name',         null: false
-    t.string   'url'
-    t.boolean  'is_prod_data'
-    t.datetime 'created_at',   null: false
-    t.datetime 'updated_at',   null: false
-    t.index ['name'], name: 'index_environments_on_name', unique: true
+ActiveRecord::Schema.define(version: 20160813100942) do
+
+  create_table "environments", force: :cascade do |t|
+    t.string   "name",         null: false
+    t.string   "url"
+    t.boolean  "is_prod_data"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["name"], name: "index_environments_on_name", unique: true
   end
 
-  create_table 'promos', force: :cascade do |t|
-    t.string   'code'
-    t.string   'product'
-    t.integer  'environment_id', null: false
-    t.datetime 'created_at',     null: false
-    t.datetime 'updated_at',     null: false
-    t.index ['environment_id'], name: 'index_promos_on_environment_id'
+  create_table "promos", force: :cascade do |t|
+    t.string   "code"
+    t.string   "product"
+    t.integer  "environment_id", null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.index ["environment_id"], name: "index_promos_on_environment_id"
   end
 
-  create_table 'vouchers', force: :cascade do |t|
-    t.string   'code'
-    t.string   'product'
-    t.string   'voucher_type'
-    t.date     'expiry_date'
-    t.float    'value'
-    t.string   'notes'
-    t.integer  'environment_id', null: false
-    t.datetime 'created_at',     null: false
-    t.datetime 'updated_at',     null: false
-    t.index ['environment_id'], name: 'index_vouchers_on_environment_id'
+  create_table "sims", force: :cascade do |t|
+    t.string   "sim_number"
+    t.string   "sim_type"
+    t.integer  "environment_id", null: false
+    t.string   "notes"
+    t.boolean  "in_use"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.index ["environment_id"], name: "index_sims_on_environment_id"
   end
+
+  create_table "vouchers", force: :cascade do |t|
+    t.string   "code"
+    t.string   "product"
+    t.string   "voucher_type"
+    t.date     "expiry_date"
+    t.float    "value"
+    t.string   "notes"
+    t.integer  "environment_id", null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.index ["environment_id"], name: "index_vouchers_on_environment_id"
+  end
+
 end

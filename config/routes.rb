@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'sims/index'
+
   get 'vouchers/index'
 
   get 'promos/index'
@@ -11,4 +13,5 @@ Rails.application.routes.draw do
   resources :environments
   resources :promos
   resources :vouchers
+  resources :sims
 end
