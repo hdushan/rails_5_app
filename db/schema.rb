@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_160_812_065_850) do
+ActiveRecord::Schema.define(version: 20_160_813_062_312) do
   create_table 'environments', force: :cascade do |t|
     t.string   'name',         null: false
     t.string   'url'
@@ -27,5 +27,18 @@ ActiveRecord::Schema.define(version: 20_160_812_065_850) do
     t.datetime 'created_at',     null: false
     t.datetime 'updated_at',     null: false
     t.index ['environment_id'], name: 'index_promos_on_environment_id'
+  end
+
+  create_table 'vouchers', force: :cascade do |t|
+    t.string   'code'
+    t.string   'product'
+    t.string   'voucher_type'
+    t.date     'expiry_date'
+    t.float    'value'
+    t.string   'notes'
+    t.integer  'environment_id', null: false
+    t.datetime 'created_at',     null: false
+    t.datetime 'updated_at',     null: false
+    t.index ['environment_id'], name: 'index_vouchers_on_environment_id'
   end
 end

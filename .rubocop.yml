@@ -3,3 +3,7 @@ Metrics/LineLength:
 
 Documentation:
   Enabled: false
+
+AllCops:
+  Exclude:
+    - !ruby/regexp /.*_seed\.rb$/

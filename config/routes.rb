@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'vouchers/index'
+
   get 'promos/index'
 
   get 'environments/index'
@@ -8,4 +10,5 @@ Rails.application.routes.draw do
   resources :health_checks
   resources :environments
   resources :promos
+  resources :vouchers
 end

@@ -1,10 +1,10 @@
-class PromosController < ApplicationController
+class VouchersController < ApplicationController
   def index
-    @promos = filter_by_environment(params)
-    @promos = filter_by_count(@promos, params[:count])
+    @vouchers = filter_by_environment(params)
+    @vouchers = filter_by_count(@vouchers, params[:count])
     respond_to do |format|
       format.html
-      format.json { render(json: @promos) }
+      format.json { render(json: @vouchers) }
     end
   end
 
@@ -12,9 +12,9 @@ class PromosController < ApplicationController
 
   def filter_by_environment(params)
     if environment(params[:environment]).nil?
-      Promo.all
+      Voucher.all
     else
-      Promo.where(environment: environment(params[:environment]))
+      Voucher.where(environment: environment(params[:environment]))
     end
   end
 
