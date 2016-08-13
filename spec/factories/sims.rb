@@ -1,9 +1,9 @@
 FactoryGirl.define do
   factory :sim do
-    sim_number "MyString"
-    sim_type "MyString"
+    sim_number 'MyString'
+    sim_type 'MyString'
     environment nil
-    notes "MyString"
+    notes 'MyString'
     in_use false
   end
 end
