@@ -1,6 +1,6 @@
 class PromosController < ApplicationController
   def index
-    @promos = filter_by_environment(params)
+    @promos = filter_by_environment(params).paginate(page: params[:page])
     @promos = filter_by_count(@promos, params[:count])
     respond_to do |format|
       format.html
@@ -8,11 +8,16 @@ class PromosController < ApplicationController
     end
   end
 
+  def fetch
+    @promos = Promo.where(environment: environment(params[:environment])).limit(params[:count])
+    render json: @promos
+  end
+
   private
 
   def filter_by_environment(params)
     if environment(params[:environment]).nil?
-      Promo.paginate(page: params[:page])
+      Promo.order(:id)
     else
       Promo.where(environment: environment(params[:environment]))
     end
@@ -30,7 +35,7 @@ class PromosController < ApplicationController
     else
       begin
         count = count.to_i
-        full_list.first(count)
+        full_list.limit(count)
       rescue TypeError
         full_list
       end

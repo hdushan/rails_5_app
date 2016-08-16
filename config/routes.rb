@@ -3,11 +3,19 @@ Rails.application.routes.draw do
   root 'pages#home'
   resources :health_checks
   resources :environments
-  resources :promos
-  resources :vouchers
+  resources :promos do
+    collection do
+      get :fetch
+    end
+  end
+  resources :vouchers do
+    collection do
+      get :fetch
+    end
+  end
   resources :sims do
     collection do
-      get :reserve
+      get :fetch
     end
   end
 end

@@ -1,6 +1,6 @@
 class VouchersController < ApplicationController
   def index
-    @vouchers = filter_by_environment(params)
+    @vouchers = filter_by_environment(params).paginate(page: params[:page])
     @vouchers = filter_by_count(@vouchers, params[:count])
     respond_to do |format|
       format.html
@@ -8,13 +8,18 @@ class VouchersController < ApplicationController
     end
   end
 
+  def fetch
+    @sims = Voucher.unexpired(count: params[:count].to_i, environment: params[:environment])
+    render json: @sims
+  end
+
   private
 
   def filter_by_environment(params)
     if environment(params[:environment]).nil?
-      Voucher.paginate(page: params[:page])
+      Voucher.order(:id)
     else
-      Voucher.where(environment: environment(params[:environment])).paginate(page: params[:page])
+      Voucher.where(environment: environment(params[:environment]))
     end
   end
 
@@ -30,7 +35,7 @@ class VouchersController < ApplicationController
     else
       begin
         count = count.to_i
-        full_list.first(count)
+        full_list.limit(count)
       rescue TypeError
         full_list
       end
