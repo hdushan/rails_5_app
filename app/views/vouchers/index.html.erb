@@ -8,6 +8,10 @@
         <th>Voucher Code</th>
         <th>Product</th>
         <th>Environment</th>
+        <th>Value</th>
+        <th>Type</th>
+        <th>Expiry Date</th>
+        <th>Notes</th>
       </tr>
       </thead>
       <tbody>
@@ -16,6 +20,10 @@
             <td scope="row"><%= voucher.code %></td>
             <td><%= voucher.product %></td>
             <td><%= voucher.environment.name %></td>
+            <td><%= number_to_currency voucher.value %></td>
+            <td><%= voucher.voucher_type %></td>
+            <td><%= voucher.expiry_date %></td>
+            <td><%= voucher.notes %></td>
           </tr>
       <% end %>
       </tbody>

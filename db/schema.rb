@@ -34,9 +34,9 @@ ActiveRecord::Schema.define(version: 20_160_813_100_942) do
     t.string   'sim_type'
     t.integer  'environment_id', null: false
     t.string   'notes'
-    t.boolean  'in_use'
-    t.datetime 'created_at',     null: false
-    t.datetime 'updated_at',     null: false
+    t.boolean  'in_use', default: false
+    t.datetime 'created_at',                     null: false
+    t.datetime 'updated_at',                     null: false
     t.index ['environment_id'], name: 'index_sims_on_environment_id'
   end
 

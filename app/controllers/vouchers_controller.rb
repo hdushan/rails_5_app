@@ -14,7 +14,7 @@ class VouchersController < ApplicationController
     if environment(params[:environment]).nil?
       Voucher.paginate(page: params[:page])
     else
-      Voucher.where(environment: environment(params[:environment]))
+      Voucher.where(environment: environment(params[:environment])).paginate(page: params[:page])
     end
   end
 
