@@ -19,7 +19,11 @@
   <div class="col-md-1"></div>
   <div class="row col-md-10" id="content">
     <div class="row" id="tabs">
-      <%= render :partial => 'layouts/tabs'%>
+      <div class="col-md-3"></div>
+      <div class="col-md-9">
+        <%= render :partial => 'layouts/tabs'%>
+      </div>
+      <div class="col-md-3"></div>
     </div>
     <%= yield %>
   </div>
