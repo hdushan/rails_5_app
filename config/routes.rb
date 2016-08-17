@@ -13,6 +13,11 @@ Rails.application.routes.draw do
       get :fetch
     end
   end
+  resources :direct_debits do
+    collection do
+      get :fetch
+    end
+  end
   resources :vouchers do
     collection do
       get :fetch
