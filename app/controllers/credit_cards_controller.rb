@@ -1,6 +1,6 @@
 class CreditCardsController < ApplicationController
   def index
-    @credit_cards = CreditCard.all
+    @credit_cards = CreditCard.all.paginate(page: params[:page])
     respond_to do |format|
       format.html
       format.json { render(json: @credit_cards) }

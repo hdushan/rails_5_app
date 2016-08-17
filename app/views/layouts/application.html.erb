@@ -16,17 +16,20 @@
   </div>
 </div>
 <div class="container-fluid">
-  <div class="row" id="content">
-    <div id="content">
-      <%= yield %>
+  <div class="col-md-1"></div>
+  <div class="row col-md-10" id="content">
+    <div class="row" id="tabs">
+      <%= render :partial => 'layouts/tabs'%>
+    </div>
+    <%= yield %>
+  </div>
+  <div class="col-md-1"></div>
+</div>
+  <div class="container-fluid">
+    <div class="row">
+      <%= render :partial => 'layouts/footer'%>
     </div>
   </div>
-</div>
-<div class="container-fluid">
-  <div class="row">
-    <div><%= render :partial => 'layouts/footer'%></div>
-  </div>
-</div>
 </div>
 </body>
 </html>
