@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_160_817_022_834) do
+ActiveRecord::Schema.define(version: 20_160_817_024_921) do
   create_table 'credit_cards', force: :cascade do |t|
     t.string   'card_number'
     t.string   'card_type'
@@ -43,6 +43,16 @@ ActiveRecord::Schema.define(version: 20_160_817_022_834) do
     t.datetime 'created_at',   null: false
     t.datetime 'updated_at',   null: false
     t.index ['name'], name: 'index_environments_on_name', unique: true
+  end
+
+  create_table 'paypal_accounts', force: :cascade do |t|
+    t.string   'user_name'
+    t.string   'password'
+    t.integer  'environment_id'
+    t.string   'notes'
+    t.datetime 'created_at',     null: false
+    t.datetime 'updated_at',     null: false
+    t.index ['environment_id'], name: 'index_paypal_accounts_on_environment_id'
   end
 
   create_table 'promos', force: :cascade do |t|

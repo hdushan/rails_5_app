@@ -18,6 +18,11 @@ Rails.application.routes.draw do
       get :fetch
     end
   end
+  resources :paypal_accounts do
+    collection do
+      get :fetch
+    end
+  end
   resources :vouchers do
     collection do
       get :fetch
