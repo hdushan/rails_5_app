@@ -10,7 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_160_813_100_942) do
+ActiveRecord::Schema.define(version: 20_160_816_230_141) do
+  create_table 'credit_cards', force: :cascade do |t|
+    t.string   'card_number'
+    t.string   'card_type'
+    t.string   'name'
+    t.string   'cvv'
+    t.date     'expiry_date'
+    t.string   'crn'
+    t.integer  'environment_id', null: false
+    t.string   'notes'
+    t.string   'return_code'
+    t.datetime 'created_at',     null: false
+    t.datetime 'updated_at',     null: false
+    t.index ['environment_id'], name: 'index_credit_cards_on_environment_id'
+  end
+
   create_table 'environments', force: :cascade do |t|
     t.string   'name',         null: false
     t.string   'url'

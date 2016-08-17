@@ -7,3 +7,4 @@ Documentation:
 AllCops:
   Exclude:
     - !ruby/regexp /.*_seed\.rb$/
+    - !ruby/regexp /.*migrate.*\d{14}.*\.rb$/

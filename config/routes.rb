@@ -8,6 +8,11 @@ Rails.application.routes.draw do
       get :fetch
     end
   end
+  resources :credit_cards do
+    collection do
+      get :fetch
+    end
+  end
   resources :vouchers do
     collection do
       get :fetch

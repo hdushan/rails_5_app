@@ -22,7 +22,7 @@
             <td><%= voucher.environment.name %></td>
             <td><%= number_to_currency voucher.value %></td>
             <td><%= voucher.voucher_type %></td>
-            <td><%= voucher.expiry_date %></td>
+            <td><%= voucher.expiry_date.strftime('%d/%m/%Y') %></td>
             <td><%= voucher.notes %></td>
           </tr>
       <% end %>

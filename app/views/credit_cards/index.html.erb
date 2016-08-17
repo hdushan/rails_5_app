@@ -1,0 +1,32 @@
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    <table class="table table-bordered table-inverse">
+      <thead class="thead-inverse">
+      <tr>
+        <th>Card Type</th>
+        <th>Number</th>
+        <th>Expiry Date</th>
+        <th>CVV</th>
+        <th>Return Code</th>
+        <th>Description</th>
+        <th>Environment</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @credit_cards.each do |credit_card| %>
+          <tr>
+            <td scope="row"><%= credit_card.card_type %></td>
+            <td><%= credit_card.card_number %></td>
+            <td><%= credit_card.expiry_date.strftime('%m/%Y') %></td>
+            <td><%= credit_card.cvv %></td>
+            <td><%= credit_card.return_code %></td>
+            <td><%= credit_card.notes %></td>
+            <td><%= credit_card.environment.name %></td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-md-2"></div>
+</div>
