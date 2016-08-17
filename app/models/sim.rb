@@ -1,6 +1,6 @@
 class Sim < ApplicationRecord
   belongs_to :environment
-  self.per_page = 10
+  self.per_page = 20
 
   def self.reserve(by: nil, environment: 'battlefield', count: 1)
     raise "Needs a 'reserved_by'" if by.nil? || by.strip == ''
