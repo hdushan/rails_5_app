@@ -14,7 +14,11 @@
       <tbody>
       <% @promos.each do |promo| %>
           <tr>
-            <td scope="row"><%= promo.code %></td>
+            <td scope="row">
+              <div style="height: 50px; overflow:auto;">
+                <%= promo.code %>
+              </div>
+            </td>
             <td><%= promo.product %></td>
             <td><%= promo.environment.name %></td>
           </tr>

@@ -14,7 +14,11 @@
       <tbody>
       <% @direct_debits.each do |direct_debit| %>
           <tr>
-            <td scope="row"><%= direct_debit.bsb %></td>
+            <td scope="row">
+              <div style="height: 50px; overflow:auto;">
+                <%= direct_debit.bsb %>
+              </div>
+            </td>
             <td><%= direct_debit.account_number %></td>
             <td><%= direct_debit.notes %></td>
             <td><%= direct_debit.environment.name %></td>

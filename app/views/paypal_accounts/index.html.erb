@@ -14,7 +14,11 @@
       <tbody>
       <% @paypal_accounts.each do |paypal_account| %>
           <tr>
-            <td scope="row"><%= paypal_account.user_name %></td>
+            <td scope="row">
+              <div style="height: 50px; overflow:auto;">
+                <%= paypal_account.user_name %>
+              </div>
+            </td>
             <td><%= paypal_account.password %></td>
             <td><%= paypal_account.notes %></td>
             <td><%= paypal_account.environment.name %></td>

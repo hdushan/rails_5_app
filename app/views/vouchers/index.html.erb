@@ -18,7 +18,11 @@
       <tbody>
       <% @vouchers.each do |voucher| %>
           <tr>
-            <td scope="row"><%= voucher.code %></td>
+            <td scope="row">
+              <div style="height: 50px; overflow:auto;">
+                <%= voucher.code %>
+              </div>
+            </td>
             <td><%= voucher.product %></td>
             <td><%= voucher.environment.name %></td>
             <td><%= number_to_currency voucher.value %></td>

@@ -13,7 +13,11 @@
       <tbody>
       <% @environments.each do |environment| %>
           <tr>
-            <td scope="row"><%= environment.name %></td>
+            <td scope="row">
+              <div style="height: 50px; overflow:auto;">
+                <%= environment.name %>
+              </div>
+            </td>
             <td><%= environment.url %></td>
             <td><%= environment.is_prod_data %></td>
           </tr>

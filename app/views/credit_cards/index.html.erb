@@ -18,13 +18,41 @@
       <tbody>
       <% @credit_cards.each do |credit_card| %>
           <tr>
-            <td scope="row"><%= credit_card.card_type %></td>
-            <td><%= credit_card.card_number %></td>
-            <td><%= credit_card.expiry_date.strftime('%m/%Y') %></td>
-            <td><%= credit_card.cvv %></td>
-            <td><%= credit_card.return_code %></td>
-            <td><%= credit_card.notes %></td>
-            <td><%= credit_card.environment.name %></td>
+            <td scope="row">
+              <div style="height: 50px; overflow:auto;">
+                <%= credit_card.card_type %>
+              </div>
+            </td>
+            <td>
+              <div style="height: 50px; overflow:auto;">
+                <%= credit_card.card_number %>
+              </div>
+            </td>
+            <td>
+              <div style="height: 50px; overflow:auto;">
+                <%= credit_card.expiry_date.strftime('%m/%Y') %>
+              </div>
+            </td>
+            <td>
+              <div style="height: 50px; overflow:auto;">
+                <%= credit_card.cvv %>
+              </div>
+            </td>
+            <td>
+              <div style="height: 50px; overflow:auto;">
+                <%= credit_card.return_code %>
+              </div>
+            </td>
+            <td>
+              <div style="height: 50px; overflow:auto;">
+                <%= credit_card.notes %>
+              </div>
+            </td>
+            <td>
+              <div style="height: 50px; overflow:auto;">
+                <%= credit_card.environment.name %>
+              </div>
+            </td>
           </tr>
       <% end %>
       </tbody>
