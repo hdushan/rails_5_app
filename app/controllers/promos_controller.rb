@@ -1,10 +1,13 @@
 class PromosController < ApplicationController
+  include UtilityMethods
   def index
-    @promos = Promo.all.paginate(page: params[:page])
-    respond_to do |format|
-      format.html
-      format.json { render(json: @promos) }
+    if user_signed_in?
+      @promos = Promo.all.paginate(page: params[:page])
+    else
+      flash.now[:alert] = "Production Promos hidden as you haven't logged in!"
+      @promos = Promo.where.not(environment: environment('production')).paginate(page: params[:page])
     end
+    respond_to_formats(@credit_cards)
   end
 
   def fetch

@@ -2,11 +2,13 @@ class PaypalAccountsController < ApplicationController
   include UtilityMethods
 
   def index
-    @paypal_accounts = PaypalAccount.all.paginate(page: params[:page])
-    respond_to do |format|
-      format.html
-      format.json { render(json: @paypal_accounts) }
+    if user_signed_in?
+      @paypal_accounts = PaypalAccount.all.paginate(page: params[:page])
+    else
+      flash.now[:alert] = "Production PayPal Accounts hidden as you haven't logged in!"
+      @paypal_accounts = PaypalAccount.where.not(environment: environment('production')).paginate(page: params[:page])
     end
+    respond_to_formats(@credit_cards)
   end
 
   def fetch

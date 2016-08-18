@@ -7,6 +7,7 @@ gem 'jquery-rails'
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.1.0'
 end
+gem 'devise'
 gem 'chronic'
 gem 'will_paginate'
 gem 'sqlite3'

@@ -1,10 +1,9 @@
 class SimsController < ApplicationController
+  include UtilityMethods
+
   def index
     @sims = Sim.all.paginate(page: params[:page])
-    respond_to do |format|
-      format.html
-      format.json { render(json: @sims) }
-    end
+    respond_to_formats(@credit_cards)
   end
 
   def fetch

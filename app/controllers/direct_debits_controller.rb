@@ -1,11 +1,12 @@
 class DirectDebitsController < ApplicationController
   include UtilityMethods
   def index
-    @direct_debits = DirectDebit.all
-    respond_to do |format|
-      format.html
-      format.json { render(json: @direct_debits) }
-    end
+    @direct_debits = if user_signed_in?
+                       DirectDebit.all.paginate(page: params[:page])
+                     else
+                       DirectDebit.where.not(environment: environment('production')).paginate(page: params[:page])
+                     end
+    respond_to_formats(@credit_cards)
   end
 
   def fetch

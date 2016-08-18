@@ -5,4 +5,11 @@ module UtilityMethods
       Environment.find_by(name: environment_in_params)
     end
   end
+
+  def respond_to_formats(response_list)
+    respond_to do |format|
+      format.html
+      format.json { render(json: response_list) }
+    end
+  end
 end

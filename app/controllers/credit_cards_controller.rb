@@ -1,11 +1,14 @@
 class CreditCardsController < ApplicationController
   include UtilityMethods
+
   def index
-    @credit_cards = CreditCard.all.paginate(page: params[:page])
-    respond_to do |format|
-      format.html
-      format.json { render(json: @credit_cards) }
+    if user_signed_in?
+      @credit_cards = CreditCard.all.paginate(page: params[:page])
+    else
+      flash.now[:alert] = "Production Credit Cards hidden as you haven't logged in!"
+      @credit_cards = CreditCard.where.not(environment: environment('production')).paginate(page: params[:page])
     end
+    respond_to_formats(@credit_cards)
   end
 
   def fetch
