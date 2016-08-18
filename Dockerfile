@@ -1,12 +1,12 @@
-FROM ruby:2.2.3
-
-RUN apt-get update -qq && apt-get install -y build-essential libpq-dev nodejs
+FROM scardon/ruby-node-alpine:2.2.3
 
 WORKDIR /app
 
 COPY . /app
 
-RUN gem install bundler && bundle install
+RUN apk add --no-cache --update build-base sqlite-dev && \
+    gem install bundler && bundle install
+
 
 EXPOSE 3000
 
