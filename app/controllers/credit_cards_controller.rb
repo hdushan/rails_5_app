@@ -5,7 +5,7 @@ class CreditCardsController < ApplicationController
     if user_signed_in?
       @credit_cards = CreditCard.all.paginate(page: params[:page])
     else
-      flash.now[:alert] = "Production Credit Cards hidden as you haven't logged in!"
+      flash.now[:notice] = "Production Credit Cards hidden as you haven't logged in!"
       @credit_cards = CreditCard.where.not(environment: environment('production')).paginate(page: params[:page])
     end
     respond_to_formats(@credit_cards)

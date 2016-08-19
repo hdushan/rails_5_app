@@ -4,7 +4,7 @@ class PromosController < ApplicationController
     if user_signed_in?
       @promos = Promo.all.paginate(page: params[:page])
     else
-      flash.now[:alert] = "Production Promos hidden as you haven't logged in!"
+      flash.now[:notice] = "Production Promos hidden as you haven't logged in!"
       @promos = Promo.where.not(environment: environment('production')).paginate(page: params[:page])
     end
     respond_to_formats(@credit_cards)

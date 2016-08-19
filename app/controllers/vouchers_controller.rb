@@ -4,7 +4,7 @@ class VouchersController < ApplicationController
     if user_signed_in?
       @vouchers = Voucher.all.paginate(page: params[:page])
     else
-      flash.now[:alert] = "Production Vouchers hidden as you haven't logged in!"
+      flash.now[:notice] = "Production Vouchers hidden as you haven't logged in!"
       @vouchers = Voucher.where.not(environment: environment('production')).paginate(page: params[:page])
     end
     respond_to_formats(@credit_cards)
