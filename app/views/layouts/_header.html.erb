@@ -16,6 +16,12 @@
       </div>
       <div class="col-md-2"></div>
     </div>
-    <div class="col-md-2">Login coming soon ...</div>
+    <div class="col-md-2">
+      <% if user_signed_in? %>
+          <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
+      <% else %>
+          <%= link_to 'Sign In', new_user_session_path %>
+      <% end %>
+    </div>
   </div>
 </div>

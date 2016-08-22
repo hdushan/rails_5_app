@@ -1,19 +1,19 @@
 <ul class="nav nav-pills">
   <li class="nav-item">
-    <%= link_to 'Sim Cards', sims_path, class: "nav-link #{'active' if current_page?(controller: 'sims')}" %>
+    <%= link_to 'Sim Cards', sims_path, class: "nav-link #{'active' if current_page?(sims_path)}" %>
   </li>
   <li class="nav-item dropdown">
-    <%= link_to 'Payment Methods', '#', class: "nav-link dropdown-toggle #{'active' if current_page?(controller: 'credit_cards') or current_page?(controller: 'direct_debits') or current_page?(controller: 'paypal_accounts')}", role: "button", 'data-toggle' => "dropdown",  'aria-haspopup' => "true", 'aria-expanded' => "false" %>
+    <%= link_to 'Payment Methods', '#', class: "nav-link dropdown-toggle #{'active' if current_page?(credit_cards_path) or current_page?(direct_debits_path) or current_page?(paypal_accounts_path)}", role: "button", 'data-toggle' => "dropdown",  'aria-haspopup' => "true", 'aria-expanded' => "false" %>
     <div class="dropdown-menu">
-      <%= link_to 'Credit Cards', credit_cards_path, class: "dropdown-item #{'active' if current_page?(controller: 'credit_cards')}" %>
-      <%= link_to 'Direct Debit', direct_debits_path, class: "dropdown-item #{'active' if current_page?(controller: 'direct_debits')}" %>
-      <%= link_to 'Paypal', paypal_accounts_path, class: "dropdown-item #{'active' if current_page?(controller: 'paypal_accounts')}" %>
+      <%= link_to 'Credit Cards', credit_cards_path, class: "dropdown-item #{'active' if current_page?(credit_cards_path)}" %>
+      <%= link_to 'Direct Debit', direct_debits_path, class: "dropdown-item #{'active' if current_page?(direct_debits_path)}" %>
+      <%= link_to 'Paypal', paypal_accounts_path, class: "dropdown-item #{'active' if current_page?(paypal_accounts_path)}" %>
     </div>
   </li>
   <li class="nav-item">
-    <%= link_to 'Vouchers', vouchers_path, class: "nav-link #{'active' if current_page?(controller: 'vouchers')}" %>
+    <%= link_to 'Vouchers', vouchers_path, class: "nav-link #{'active' if current_page?(vouchers_path)}" %>
   </li>
   <li class="nav-item">
-    <%= link_to 'Promos', promos_path, class: "nav-link #{'active' if current_page?(controller: 'promos')}" %>
+    <%= link_to 'Promos', promos_path, class: "nav-link #{'active' if current_page?(promos_path)}" %>
   </li>
 </ul>
