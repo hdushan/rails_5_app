@@ -29,7 +29,8 @@ group :development, :test do
   gem 'rails-controller-testing'
   gem 'capybara'
   gem 'simplecov'
-  gem "codeclimate-test-reporter"
+  gem 'codeclimate-test-reporter'
+  gem 'pry'
 end
 
 group :development do

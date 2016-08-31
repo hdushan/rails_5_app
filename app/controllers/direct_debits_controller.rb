@@ -4,6 +4,7 @@ class DirectDebitsController < ApplicationController
     @direct_debits = if user_signed_in?
                        DirectDebit.all.paginate(page: params[:page])
                      else
+                       flash.now[:notice] = "Production Direct Debits hidden as you haven't logged in!"
                        DirectDebit.where.not(environment: environment('production')).paginate(page: params[:page])
                      end
     respond_to_formats(@credit_cards)

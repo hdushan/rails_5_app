@@ -11,7 +11,7 @@ class VouchersController < ApplicationController
   end
 
   def fetch
-    @sims = Voucher.unexpired(count: params[:count].to_i, environment: params[:environment])
-    render json: @sims
+    @vouchers = Voucher.unexpired(count: params[:count].to_i, environment: params[:environment])
+    render json: @vouchers
   end
 end

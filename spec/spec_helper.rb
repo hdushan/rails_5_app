@@ -27,7 +27,7 @@ SimpleCov.minimum_coverage 90
 SimpleCov.minimum_coverage_by_file 90
 
 if ENV['CODECLIMATE_REPO_TOKEN']
-  require "codeclimate-test-reporter"
+  require 'codeclimate-test-reporter'
   CodeClimate::TestReporter.start
 end
 
