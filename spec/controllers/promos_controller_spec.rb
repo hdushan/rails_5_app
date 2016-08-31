@@ -36,6 +36,10 @@ RSpec.describe PromosController, type: :controller do
       it 'returns all promos' do
         is_expected.to eq([@promo_production_1, @promo_production_2, @promo_battlefield])
       end
+
+      it 'does not show any notice about hidden data' do
+        expect(flash[:notice]).not_to be_present
+      end
     end
 
     context 'with user not signed in' do
@@ -46,6 +50,10 @@ RSpec.describe PromosController, type: :controller do
 
       it 'returns only non-prod promos' do
         is_expected.to eq([@promo_battlefield])
+      end
+
+      it 'shows notice about production data hidden' do
+        expect(flash[:notice]).to match(/production Promos hidden/i)
       end
     end
   end

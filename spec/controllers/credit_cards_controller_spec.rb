@@ -26,6 +26,10 @@ RSpec.describe CreditCardsController, type: :controller do
       it 'returns all credit cards' do
         is_expected.to eq([@credit_card_production_1, @credit_card_production_2, @credit_card_battlefield])
       end
+
+      it 'does not show any notice about hidden data' do
+        expect(flash[:notice]).not_to be_present
+      end
     end
 
     context 'with user not signed in' do
@@ -36,6 +40,10 @@ RSpec.describe CreditCardsController, type: :controller do
 
       it 'returns only non-prod credit cards' do
         is_expected.to eq([@credit_card_battlefield])
+      end
+
+      it 'shows notice about production data hidden' do
+        expect(flash[:notice]).to match(/production Credit Cards hidden/i)
       end
     end
   end

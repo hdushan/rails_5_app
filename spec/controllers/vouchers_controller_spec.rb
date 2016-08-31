@@ -37,6 +37,10 @@ RSpec.describe VouchersController, type: :controller do
       it 'returns all vouchers including expired ones' do
         is_expected.to eq([@voucher_production_1, @voucher_production_2, @voucher_production_expired, @voucher_battlefield])
       end
+
+      it 'does not show any notice about hidden data' do
+        expect(flash[:notice]).not_to be_present
+      end
     end
 
     context 'with user not signed in' do
@@ -47,6 +51,10 @@ RSpec.describe VouchersController, type: :controller do
 
       it 'returns only non-prod vouchers' do
         is_expected.to eq([@voucher_battlefield])
+      end
+
+      it 'shows notice about production data hidden' do
+        expect(flash[:notice]).to match(/production Vouchers hidden/i)
       end
     end
   end

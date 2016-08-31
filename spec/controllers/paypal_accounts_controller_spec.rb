@@ -36,6 +36,10 @@ RSpec.describe PaypalAccountsController, type: :controller do
       it 'returns all paypal accounts' do
         is_expected.to eq([@paypal_production_1, @paypal_production_2, @paypal_battlefield])
       end
+
+      it 'does not show any notice about hidden data' do
+        expect(flash[:notice]).not_to be_present
+      end
     end
 
     context 'with user not signed in' do
@@ -46,6 +50,10 @@ RSpec.describe PaypalAccountsController, type: :controller do
 
       it 'returns only non-prod paypal accounts' do
         is_expected.to eq([@paypal_battlefield])
+      end
+
+      it 'shows notice about production data hidden' do
+        expect(flash[:notice]).to match(/production Paypal Accounts hidden/i)
       end
     end
   end
