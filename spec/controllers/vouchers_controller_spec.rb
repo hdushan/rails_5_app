@@ -6,6 +6,7 @@ RSpec.describe VouchersController, type: :controller do
     @environment_battlefield = create :environment, name: 'battlefield', url: 'http://battlefield', is_prod_data: false
     @voucher_production_1 = create :voucher, code: '111111', expiry_date: Date.today + 1, environment: @environment_production
     @voucher_production_2 = create :voucher, code: '222222', expiry_date: Date.today + 1, environment: @environment_production
+    @voucher_production_expired = create :voucher, code: '333333', expiry_date: Date.today - 1, environment: @environment_production
     @voucher_battlefield = create :voucher, expiry_date: Date.today + 1, environment: @environment_battlefield
   end
 
@@ -33,8 +34,8 @@ RSpec.describe VouchersController, type: :controller do
         get :index
       end
 
-      it 'returns all vouchers' do
-        is_expected.to eq([@voucher_production_1, @voucher_production_2, @voucher_battlefield])
+      it 'returns all vouchers including expired ones' do
+        is_expected.to eq([@voucher_production_1, @voucher_production_2, @voucher_production_expired, @voucher_battlefield])
       end
     end
 
@@ -63,6 +64,10 @@ RSpec.describe VouchersController, type: :controller do
 
     it 'returns only data for the specified environment and count' do
       is_expected.to eq([@voucher_production_1])
+    end
+
+    it 'returns only unexpired vouchers' do
+      is_expected.not_to include(@voucher_production_expired)
     end
   end
 end
