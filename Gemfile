@@ -33,6 +33,7 @@ group :development, :test do
   gem 'poltergeist'
   gem 'simplecov'
   gem 'codeclimate-test-reporter'
+  gem 'fuubar'
   gem 'pry'
 end
 

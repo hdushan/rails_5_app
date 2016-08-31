@@ -2,11 +2,18 @@ require 'factory_girl'
 require 'simplecov'
 
 SimpleCov.start do
-  add_filter '/spec/'
+  add_filter ['/spec/', '/channels/', '/jobs/', '/mailers/']
   coverage_dir './tmp/coverage'
 end
-SimpleCov.minimum_coverage 90
-SimpleCov.minimum_coverage_by_file 90
+
+unless ENV['DONT_MEASURE_COVERAGE']
+  SimpleCov.start do
+    add_filter ['/spec/', '/channels/', '/jobs/', '/mailers/']
+    coverage_dir './tmp/coverage'
+    SimpleCov.minimum_coverage 95
+    SimpleCov.minimum_coverage_by_file 95
+  end
+end
 
 if ENV['CODECLIMATE_REPO_TOKEN']
   require 'codeclimate-test-reporter'
