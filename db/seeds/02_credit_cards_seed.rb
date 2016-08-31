@@ -7,6 +7,7 @@ battlefield_credit_cards_list = [
   ['4539101111292783', 'VISA', '', '050', '2019-01-28', '', '500.1050', 'Provider System Error', battlefield_environment],
   ['4556712317219582', 'VISA', '', '052', '2019-01-28', '', '500.1052', 'Provider Unavailable', battlefield_environment],
   ['5558782195906787', 'MASTERCARD', '', '999', '2019-01-28', '', '201.0000', 'Creation Success. Approved', battlefield_environment],
+  ['5217190100000014', 'MASTERCARD', '', '999', '2019-01-28', '', '201.0000', 'No DVS!! Creation Success. Approved', battlefield_environment],
   ['5314977498121598', 'MASTERCARD', '', '065', '2019-01-28', '', '500.1065', 'Stolen Card', battlefield_environment],
   ['5586521016312080', 'MASTERCARD', '', '066', '2019-01-28', '', '500.1066', 'Issuer: Restricted Card', battlefield_environment],
   ['5442638426504348', 'MASTERCARD', '', '088', '2019-01-28', '', '500.1088', 'Requested Function Not Supported', battlefield_environment],

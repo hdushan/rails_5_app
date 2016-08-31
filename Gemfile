@@ -19,6 +19,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
+gem 'newrelic_rpm'
 
 group :development, :test do
   gem 'rubocop'
@@ -27,6 +28,8 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'rails-controller-testing'
   gem 'capybara'
+  gem 'simplecov'
+  gem "codeclimate-test-reporter"
 end
 
 group :development do
