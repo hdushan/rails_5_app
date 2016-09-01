@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-feature 'Visit Home Page', integration: true do
+feature 'Visit Home Page', js: true do
   before do
     # @environment_production = create :environment, name: 'production', url: 'http://production', is_prod_data: true
     # @environment_battlefield = create :environment, name: 'battlefield', url: 'http://battlefield', is_prod_data: false

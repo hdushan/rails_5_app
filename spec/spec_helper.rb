@@ -1,5 +1,6 @@
 require 'factory_girl'
 require 'simplecov'
+require 'database_cleaner'
 
 unless ENV['DONT_MEASURE_COVERAGE']
   SimpleCov.start do
@@ -12,11 +13,7 @@ end
 
 if ENV['CODECLIMATE_REPO_TOKEN']
   require 'codeclimate-test-reporter'
-  puts "\n\nSending out coverage report"
   CodeClimate::TestReporter.start
-  puts "\n\nDone"
-else
-  puts "\n\nCode Climate token not configured!!\n\n"
 end
 
 ENV['RAILS_ENV'] ||= 'test'
@@ -45,6 +42,27 @@ ActiveRecord::Migration.check_pending! if defined?(ActiveRecord::Migration)
 ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
+  config.use_transactional_fixtures = false
+  config.before(:suite) do
+    DatabaseCleaner.clean_with(:transaction) # :truncation for mysql & postgres
+  end
+
+  config.before(:each) do
+    DatabaseCleaner.strategy = :transaction
+  end
+
+  config.before(:each, js: true) do
+    DatabaseCleaner.strategy = :transaction # :truncation for mysql & postgres
+  end
+
+  config.before(:each) do
+    DatabaseCleaner.start
+  end
+
+  config.append_after(:each) do
+    DatabaseCleaner.clean
+  end
+
   config.expect_with :rspec do |expectations|
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true
     expectations.syntax = :expect

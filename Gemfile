@@ -33,6 +33,7 @@ group :development, :test do
   gem 'poltergeist'
   gem 'simplecov'
   gem 'codeclimate-test-reporter', require: nil
+  gem 'database_cleaner'
   gem 'fuubar'
   gem 'pry'
 end
