@@ -15,6 +15,8 @@ if ENV['CODECLIMATE_REPO_TOKEN']
   puts "\n\nSending out coverage report"
   CodeClimate::TestReporter.start
   puts "\n\nDone"
+else
+  puts "\n\nCode Climate token not configured!!\n\n"
 end
 
 ENV['RAILS_ENV'] ||= 'test'
