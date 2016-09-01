@@ -1,11 +1,6 @@
 require 'factory_girl'
 require 'simplecov'
 
-SimpleCov.start do
-  add_filter ['/spec/', '/channels/', '/jobs/', '/mailers/']
-  coverage_dir './tmp/coverage'
-end
-
 unless ENV['DONT_MEASURE_COVERAGE']
   SimpleCov.start do
     add_filter ['/spec/', '/channels/', '/jobs/', '/mailers/']
