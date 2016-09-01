@@ -61,8 +61,13 @@ RSpec.describe SimsController, type: :controller do
       expect(response).to have_http_status(:success)
     end
 
-    it 'returns only data for the specified environment and count' do
+    it 'returns first available sim' do
       is_expected.to eq([@sim_production_1])
+    end
+
+    it 'returns next sim for the specified environment and count' do
+      get :fetch, params: { reserved_by: 'Test', environment: 'production', count: '1' }
+      is_expected.to eq([@sim_production_2])
     end
   end
 end

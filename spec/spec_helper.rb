@@ -12,7 +12,9 @@ end
 
 if ENV['CODECLIMATE_REPO_TOKEN']
   require 'codeclimate-test-reporter'
+  puts "\n\nSending out coverage report"
   CodeClimate::TestReporter.start
+  puts "\n\nDone"
 end
 
 ENV['RAILS_ENV'] ||= 'test'
@@ -33,11 +35,12 @@ end
 
 Capybara.default_max_wait_time = 30
 Capybara.default_driver = :poltergeist
-Capybara.javascript_driver = :chrome if ENV['CHROME']
+Capybara.javascript_driver = :poltergeist
 Capybara.save_path = 'tmp'
 
 Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 ActiveRecord::Migration.check_pending! if defined?(ActiveRecord::Migration)
+ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|

@@ -32,7 +32,7 @@ group :development, :test do
   gem 'selenium-webdriver'
   gem 'poltergeist'
   gem 'simplecov'
-  gem 'codeclimate-test-reporter'
+  gem 'codeclimate-test-reporter', require: nil
   gem 'fuubar'
   gem 'pry'
 end
