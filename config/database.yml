@@ -13,7 +13,7 @@ development:
 
 test:
   <<: *default
-  database: poseidon_test
+  database: <%= ENV['DB_SCHEMA'] || 'poseidon_test' %>
 
 production:
   <<: *default
