@@ -124,6 +124,7 @@ GEM
     mini_portile2 (2.1.0)
     minitest (5.9.0)
     multi_json (1.12.1)
+    mysql2 (0.4.4)
     newrelic_rpm (3.16.2.321)
     nio4r (1.2.1)
     nokogiri (1.6.8)
@@ -284,7 +285,9 @@ DEPENDENCIES
   fuubar
   jbuilder (~> 2.5)
   jquery-rails
+  launchy
   listen (~> 3.0.5)
+  mysql2
   newrelic_rpm
   poltergeist
   pry

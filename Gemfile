@@ -12,6 +12,7 @@ gem 'devise'
 gem 'chronic'
 gem 'will_paginate'
 gem 'sqlite3'
+gem 'mysql2'
 gem 'tzinfo-data'
 gem 'puma', '~> 3.0'
 gem 'sass-rails', '~> 5.0'
@@ -34,6 +35,7 @@ group :development, :test do
   gem 'simplecov'
   gem 'codeclimate-test-reporter', require: nil
   gem 'database_cleaner'
+  gem 'launchy'
   gem 'fuubar'
   gem 'pry'
 end

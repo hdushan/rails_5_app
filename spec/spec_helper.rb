@@ -38,21 +38,27 @@ Capybara.javascript_driver = :poltergeist
 Capybara.save_path = 'tmp'
 
 Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
-ActiveRecord::Migration.check_pending! if defined?(ActiveRecord::Migration)
 ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
-  config.use_transactional_fixtures = false
+  config.expect_with :rspec do |expectations|
+    expectations.include_chain_clauses_in_custom_matcher_descriptions = true
+    expectations.syntax = :expect
+  end
+
+  config.mock_with :rspec do |mocks|
+    mocks.verify_partial_doubles = true
+  end
+  config.include FactoryGirl::Syntax::Methods
+  config.shared_context_metadata_behavior = :apply_to_host_groups
+  config.order = 'random'
+
   config.before(:suite) do
-    DatabaseCleaner.clean_with(:transaction) # :truncation for mysql & postgres
+    DatabaseCleaner.clean_with(:truncation)
   end
 
   config.before(:each) do
-    DatabaseCleaner.strategy = :transaction
-  end
-
-  config.before(:each, js: true) do
-    DatabaseCleaner.strategy = :transaction # :truncation for mysql & postgres
+    DatabaseCleaner.strategy = :truncation
   end
 
   config.before(:each) do
@@ -62,20 +68,4 @@ RSpec.configure do |config|
   config.append_after(:each) do
     DatabaseCleaner.clean
   end
-
-  config.expect_with :rspec do |expectations|
-    expectations.include_chain_clauses_in_custom_matcher_descriptions = true
-    expectations.syntax = :expect
-  end
-
-  config.mock_with :rspec do |mocks|
-    mocks.verify_partial_doubles = true
-  end
-
-  config.include Capybara::DSL, type: :feature
-  config.include Rails.application.routes.url_helpers
-
-  config.shared_context_metadata_behavior = :apply_to_host_groups
-  config.include FactoryGirl::Syntax::Methods
-  config.order = 'random'
 end

@@ -8,6 +8,6 @@ class CreatePromos < ActiveRecord::Migration[5.0]
       t.timestamps
     end
 
-    add_foreign_key :promos, :environments
+    # add_foreign_key :promos, :environments
   end
 end

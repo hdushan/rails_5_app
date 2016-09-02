@@ -11,7 +11,7 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema.define(version: 20_160_820_214_235) do
-  create_table 'credit_cards', force: :cascade do |t|
+  create_table 'credit_cards', force: :cascade, options: 'ENGINE=InnoDB DEFAULT CHARSET=utf8' do |t|
     t.string   'card_number'
     t.string   'card_type'
     t.string   'name'
@@ -23,48 +23,48 @@ ActiveRecord::Schema.define(version: 20_160_820_214_235) do
     t.string   'return_code'
     t.datetime 'created_at',     null: false
     t.datetime 'updated_at',     null: false
-    t.index ['environment_id'], name: 'index_credit_cards_on_environment_id'
+    t.index ['environment_id'], name: 'index_credit_cards_on_environment_id', using: :btree
   end
 
-  create_table 'direct_debits', force: :cascade do |t|
+  create_table 'direct_debits', force: :cascade, options: 'ENGINE=InnoDB DEFAULT CHARSET=utf8' do |t|
     t.string   'bsb'
     t.string   'account_number'
     t.integer  'environment_id', null: false
     t.string   'notes'
     t.datetime 'created_at',     null: false
     t.datetime 'updated_at',     null: false
-    t.index ['environment_id'], name: 'index_direct_debits_on_environment_id'
+    t.index ['environment_id'], name: 'index_direct_debits_on_environment_id', using: :btree
   end
 
-  create_table 'environments', force: :cascade do |t|
+  create_table 'environments', force: :cascade, options: 'ENGINE=InnoDB DEFAULT CHARSET=utf8' do |t|
     t.string   'name',         null: false
     t.string   'url'
     t.boolean  'is_prod_data'
     t.datetime 'created_at',   null: false
     t.datetime 'updated_at',   null: false
-    t.index ['name'], name: 'index_environments_on_name', unique: true
+    t.index ['name'], name: 'index_environments_on_name', unique: true, using: :btree
   end
 
-  create_table 'paypal_accounts', force: :cascade do |t|
+  create_table 'paypal_accounts', force: :cascade, options: 'ENGINE=InnoDB DEFAULT CHARSET=utf8' do |t|
     t.string   'user_name'
     t.string   'password'
-    t.integer  'environment_id'
+    t.integer  'environment_id', null: false
     t.string   'notes'
     t.datetime 'created_at',     null: false
     t.datetime 'updated_at',     null: false
-    t.index ['environment_id'], name: 'index_paypal_accounts_on_environment_id'
+    t.index ['environment_id'], name: 'index_paypal_accounts_on_environment_id', using: :btree
   end
 
-  create_table 'promos', force: :cascade do |t|
+  create_table 'promos', force: :cascade, options: 'ENGINE=InnoDB DEFAULT CHARSET=utf8' do |t|
     t.string   'code'
     t.string   'product'
     t.integer  'environment_id', null: false
     t.datetime 'created_at',     null: false
     t.datetime 'updated_at',     null: false
-    t.index ['environment_id'], name: 'index_promos_on_environment_id'
+    t.index ['environment_id'], name: 'index_promos_on_environment_id', using: :btree
   end
 
-  create_table 'sims', force: :cascade do |t|
+  create_table 'sims', force: :cascade, options: 'ENGINE=InnoDB DEFAULT CHARSET=utf8' do |t|
     t.string   'sim_number'
     t.string   'sim_type'
     t.integer  'environment_id', null: false
@@ -72,10 +72,10 @@ ActiveRecord::Schema.define(version: 20_160_820_214_235) do
     t.boolean  'in_use', default: false
     t.datetime 'created_at',                     null: false
     t.datetime 'updated_at',                     null: false
-    t.index ['environment_id'], name: 'index_sims_on_environment_id'
+    t.index ['environment_id'], name: 'index_sims_on_environment_id', using: :btree
   end
 
-  create_table 'users', force: :cascade do |t|
+  create_table 'users', force: :cascade, options: 'ENGINE=InnoDB DEFAULT CHARSET=utf8' do |t|
     t.string   'email',                  default: '',    null: false
     t.string   'encrypted_password',     default: '',    null: false
     t.string   'reset_password_token'
@@ -89,20 +89,27 @@ ActiveRecord::Schema.define(version: 20_160_820_214_235) do
     t.datetime 'created_at',                             null: false
     t.datetime 'updated_at',                             null: false
     t.boolean  'admin', default: false
-    t.index ['email'], name: 'index_users_on_email', unique: true
-    t.index ['reset_password_token'], name: 'index_users_on_reset_password_token', unique: true
+    t.index ['email'], name: 'index_users_on_email', unique: true, using: :btree
+    t.index ['reset_password_token'], name: 'index_users_on_reset_password_token', unique: true, using: :btree
   end
 
-  create_table 'vouchers', force: :cascade do |t|
+  create_table 'vouchers', force: :cascade, options: 'ENGINE=InnoDB DEFAULT CHARSET=utf8' do |t|
     t.string   'code'
     t.string   'product'
     t.string   'voucher_type'
     t.date     'expiry_date'
-    t.float    'value'
+    t.float    'value', limit: 24
     t.string   'notes'
-    t.integer  'environment_id', null: false
-    t.datetime 'created_at',     null: false
-    t.datetime 'updated_at',     null: false
-    t.index ['environment_id'], name: 'index_vouchers_on_environment_id'
+    t.integer  'environment_id',            null: false
+    t.datetime 'created_at',                null: false
+    t.datetime 'updated_at',                null: false
+    t.index ['environment_id'], name: 'index_vouchers_on_environment_id', using: :btree
   end
+
+  add_foreign_key 'credit_cards', 'environments'
+  add_foreign_key 'direct_debits', 'environments'
+  add_foreign_key 'paypal_accounts', 'environments'
+  add_foreign_key 'promos', 'environments'
+  add_foreign_key 'sims', 'environments'
+  add_foreign_key 'vouchers', 'environments'
 end
