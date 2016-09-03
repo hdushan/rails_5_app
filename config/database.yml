@@ -4,7 +4,7 @@ default: &default
   username: <%= ENV['DB_USERNAME'] || 'root' %>
   password: <%= ENV['DB_PASSWORD'] || '' %>
   database: poseidon
-  host: <%= ENV['DB_HOST'] || 'localhost' %>
+  host: <%= ENV['DB_HOST'] || '127.0.0.1' %>
   encoding: utf8
 
 development:

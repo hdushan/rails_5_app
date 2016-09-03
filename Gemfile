@@ -11,7 +11,6 @@ end
 gem 'devise'
 gem 'chronic'
 gem 'will_paginate'
-gem 'sqlite3'
 gem 'mysql2'
 gem 'tzinfo-data'
 gem 'puma', '~> 3.0'
