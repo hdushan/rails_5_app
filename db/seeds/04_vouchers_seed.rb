@@ -696,8 +696,6 @@ production_vouchers_list = [
 
 vouchers_list = battlefield_vouchers_list + production_vouchers_list
 
-Voucher.delete_all
-
 vouchers_list.each do |code, product, voucher_type, expiry_date, value, notes, environment|
   Voucher.create(code: code, product: product, voucher_type: voucher_type, expiry_date: expiry_date,
                  value: value, notes: notes, environment: environment)

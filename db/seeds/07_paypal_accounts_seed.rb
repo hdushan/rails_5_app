@@ -13,8 +13,6 @@ paypal_accounts_list = [
   ['noFundingSource.test@amaysim.com.au', 'AWqasde321', Environment.where(name: 'battlefield').first, 'PayPal test account with no funding source'],
 ]
 
-PaypalAccount.delete_all
-
 paypal_accounts_list.each do |user_name, password, environment, notes|
   PaypalAccount.create(user_name: user_name, password: password, environment: environment, notes: notes)
 end

@@ -7594,8 +7594,6 @@ battlefield_sims_list = [
 
 sims_list = battlefield_sims_list + production_sims_list
 
-Sim.delete_all
-
 sims_list.each do |sim_number, sim_type, environment, notes, in_use|
   Sim.create(sim_number: sim_number, sim_type: sim_type, environment: environment, notes: notes, in_use: in_use)
 end

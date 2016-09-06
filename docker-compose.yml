@@ -1,8 +1,24 @@
 version: '2'
 services:
-  poseidon:
-    image: amaysim/poseidon
+  db:
+      image: mysql
+      environment:
+        - MYSQL_ROOT_PASSWORD=root
+        - MYSQL_DATABASE=poseidon_dev
+      ports:
+       - "3306:3306"
+
+  app:
+#    image: amaysim/poseidon
+    build: .
     restart: always
     ports:
       - "3000:3000"
-      - "3306:3306"
+    links:
+      - db
+    environment:
+      - DB_HOST=db
+      - DB_USERNAME=root
+      - DB_PASSWORD=root
+    depends_on:
+      - db

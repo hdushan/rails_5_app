@@ -27,8 +27,6 @@ battlefield_credit_cards_list = [
 
 credit_cards_list = battlefield_credit_cards_list
 
-CreditCard.delete_all
-
 credit_cards_list.each do |card_number, card_type, name, cvv, expiry_date, crn, return_code, notes, environment|
   CreditCard.create(card_number: card_number, card_type: card_type, name: name, cvv: cvv, expiry_date: expiry_date,
                     crn: crn, return_code: return_code, notes: notes, environment: environment)
